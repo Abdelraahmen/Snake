@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Développeur Web</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Styles principaux du site */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #f0f0f0;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header et navigation */
+      header {
+        background: rgba(15, 32, 39, 0.9);
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: #00d4ff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo i {
+        margin-right: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: #f0f0f0;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 18px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #00d4ff;
+      }
+
+      /* Sections principales */
+      section {
+        padding: 100px 0;
+      }
+
+      .hero {
+        text-align: center;
+        padding-top: 150px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, #00d4ff, #00ffaa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: #ccc;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(to right, #00d4ff, #00ffaa);
+        color: #0f2027;
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+      }
+
+      .btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.6);
+      }
+
+      /* Sections de contenu */
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        color: #00d4ff;
+        position: relative;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #00d4ff, #00ffaa);
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #00ffaa;
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .skill {
+        background: rgba(0, 212, 255, 0.1);
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 500;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .portfolio-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(0, 212, 255, 0.1);
+      }
+
+      .portfolio-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+      }
+
+      .portfolio-img {
+        height: 200px;
+        background: rgba(0, 212, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #00d4ff;
+        font-size: 3rem;
+      }
+
+      .portfolio-info {
+        padding: 25px;
+      }
+
+      .portfolio-info h3 {
+        margin-bottom: 10px;
+        color: #00ffaa;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(15, 32, 39, 0.95);
+        padding: 50px 0 30px;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .social-links a {
+        color: #f0f0f0;
+        font-size: 1.5rem;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      .social-links a:hover {
+        color: #00d4ff;
+        transform: scale(1.2);
+      }
+
+      .copyright {
+        margin-top: 20px;
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      /* Modal pour le jeu Snake (caché initialement) */
+      .snake-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .snake-modal.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .snake-container {
+        background: rgba(15, 32, 39, 0.9);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        border: 2px solid #00d4ff;
+        text-align: center;
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .snake-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+      }
+
+      .snake-title {
+        font-size: 2.5rem;
+        color: #00ffaa;
+        text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+      }
+
+      .close-btn {
+        background: transparent;
+        border: none;
+        color: #f0f0f0;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .close-btn:hover {
+        color: #ff5555;
+      }
+
+      /* Canvas pour le jeu Snake */
+      #snake-canvas {
+        border: 2px solid #00d4ff;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        margin: 0 auto 20px;
+        display: block;
+      }
+
+      .game-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+
+      .score,
+      .high-score {
+        color: #00ffaa;
+        font-weight: 600;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .control-btn {
+        background: linear-gradient(to right, #00d4ff, #00ffaa);
+        color: #0f2027;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        font-size: 1rem;
+      }
+
+      .control-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+      }
+
+      .control-btn:active {
+        transform: scale(0.98);
+      }
+
+      .instructions {
+        margin-top: 25px;
+        color: #aaa;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      /* Indice pour trouver le jeu caché */
+      .hint {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 212, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        color: #aaa;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        max-width: 300px;
+        display: none;
+      }
+
+      .hint.show {
+        display: block;
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Effets spéciaux pour le jeu */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #snake-canvas {
+          width: 95%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Site web principal -->
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#" class="logo"><i class="fas fa-code"></i> DevWebPro</a>
+          <ul class="nav-links">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Développeur Web Full Stack</h1>
+        <p>
+          Je crée des expériences web innovantes, performantes et esthétiquement
+          remarquables. Passionné par les nouvelles technologies et les
+          interfaces utilisateur intuitives.
+        </p>
+        <a href="#portfolio" class="btn">Voir mes projets</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Innovation & Créativité</h3>
+            <p>
+              Je suis un développeur web avec plus de 8 ans d'expérience dans la
+              création d'applications web modernes et responsives. Mon expertise
+              couvre un large éventail de technologies, du front-end au
+              back-end.
+            </p>
+            <p>
+              Je mets un point d'honneur à créer des expériences utilisateur
+              fluides et des interfaces visuellement captivantes qui répondent
+              parfaitement aux besoins spécifiques de chaque projet.
+            </p>
+            <div class="skills">
+              <span class="skill">HTML5/CSS3</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">React.js</span>
+              <span class="skill">Node.js</span>
+              <span class="skill">Python</span>
+              <span class="skill">UX/UI Design</span>
+              <span class="skill">Responsive Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <h2 class="section-title">Mes Projets</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-img">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="portfolio-info">
+              <h3>E-commerce Premium</h3>
+              <p>
+                Plateforme e-commerce avec système de paiement sécurisé, gestion
+                de stocks et interface administrateur complète.
+              </p>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-img">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="portfolio-info">
+              <h3>Dashboard Analytics</h3>
+              <p>
+                Tableau de bord interactif pour visualisation de données en
+                temps réel avec graphiques et rapports personnalisés.
+              </p>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-img">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="portfolio-info">
+              <h3>Application Mobile</h3>
+              <p>
+                Application hybride développée avec React Native pour la gestion
+                de tâches et collaboration d'équipe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Travaillons ensemble</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 40px">
+          Vous avez un projet en tête ? N'hésitez pas à me contacter pour
+          discuter de vos idées et voir comment je peux vous aider à les
+          concrétiser.
+        </p>
+        <div style="text-align: center">
+          <a href="mailto:contact@devwebpro.com" class="btn">Me contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <a href="#" class="logo" style="font-size: 24px; margin-bottom: 20px"
+            ><i class="fas fa-code"></i> DevWebPro</a
+          >
+          <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-codepen"></i></a>
+          </div>
+          <p class="copyright">© 2023 DevWebPro. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Indice pour trouver le jeu -->
+    <div class="hint" id="hint">
+      <i class="fas fa-lightbulb"></i> <strong>Indice :</strong> Essayez la
+      combinaison de touches "Konami Code" (↑ ↑ ↓ ↓ ← → ← → B A) pour découvrir
+      quelque chose d'amusant !
+    </div>
+
+    <!-- Modal pour le jeu Snake (caché) -->
+    <div class="snake-modal" id="snakeModal">
+      <div class="snake-container">
+        <div class="snake-header">
+          <h2 class="snake-title">🐍 Snake Secret</h2>
+          <button class="close-btn" id="closeBtn">&times;</button>
+        </div>
+        <canvas id="snake-canvas" width="600" height="400"></canvas>
+        <div class="game-info">
+          <div class="score">Score: <span id="score">0</span></div>
+          <div class="high-score">
+            Meilleur score: <span id="high-score">0</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="control-btn" id="startBtn">Démarrer</button>
+          <button class="control-btn" id="pauseBtn">Pause</button>
+          <button class="control-btn" id="resetBtn">Recommencer</button>
+        </div>
+        <div class="instructions">
+          Utilisez les touches fléchées pour déplacer le serpent. Mangez la
+          nourriture verte pour gagner des points. Évitez les murs et de vous
+          mordre vous-même !
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // =============================
+      // VARIABLES
+      // =============================
+      let canvas, ctx;
+      let snake = [];
+      let food = {};
+      let gridSize = 20;
+      let tileCountX = 30;
+      let tileCountY = 20;
+      let dx = 0;
+      let dy = 0;
+      let score = 0;
+      let highScore = localStorage.getItem("snakeHighScore") || 0;
+      let gameRunning = false;
+      let gameLoop;
+      let particles = [];
+
+      // DOM Elements
+      const snakeModal = document.getElementById("snakeModal");
+      const closeBtn = document.getElementById("closeBtn");
+      const startBtn = document.getElementById("startBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const scoreElement = document.getElementById("score");
+      const highScoreElement = document.getElementById("high-score");
+      const hint = document.getElementById("hint");
+
+      // =============================
+      // INIT GAME
+      // =============================
+      function initSnakeGame() {
+        canvas = document.getElementById("snake-canvas");
+        ctx = canvas.getContext("2d");
+
+        tileCountX = Math.floor(canvas.width / gridSize);
+        tileCountY = Math.floor(canvas.height / gridSize);
+
+        snake = [{ x: 10, y: 10 }];
+        dx = 0;
+        dy = 0;
+
+        generateFood();
+
+        score = 0;
+        scoreElement.textContent = score;
+        highScoreElement.textContent = highScore;
+
+        draw();
+      }
+
+      // =============================
+      // GENERATE FOOD
+      // =============================
+      function generateFood() {
+        food = {
+          x: Math.floor(Math.random() * tileCountX),
+          y: Math.floor(Math.random() * tileCountY),
+        };
+
+        for (let segment of snake) {
+          if (segment.x === food.x && segment.y === food.y) {
+            generateFood();
+            return;
+          }
+        }
+      }
+
+      // =============================
+      // DRAWING FUNCTIONS
+      // =============================
+      function draw() {
+        ctx.fillStyle = "rgba(15, 32, 39, 1)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawGrid();
+        drawSnake();
+        drawFood();
+        drawParticles();
+      }
+
+      function drawGrid() {
+        ctx.strokeStyle = "rgba(0, 212, 255, 0.1)";
+        for (let x = 0; x <= canvas.width; x += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y <= canvas.height; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.stroke();
+        }
+      }
+
+      function drawSnake() {
+        snake.forEach((segment, index) => {
+          if (index === 0) {
+            ctx.fillStyle = "#00ffaa";
+            ctx.shadowColor = "#00ffaa";
+            ctx.shadowBlur = 15;
+          } else {
+            const colorValue = 150 + Math.floor(105 * (index / snake.length));
+            ctx.fillStyle = `rgb(0, ${colorValue}, 150)`;
+            ctx.shadowColor = `rgb(0, ${colorValue}, 150)`;
+            ctx.shadowBlur = 5;
+          }
+
+          ctx.fillRect(
+            segment.x * gridSize,
+            segment.y * gridSize,
+            gridSize - 2,
+            gridSize - 2
+          );
+
+          // Eyes for the head
+          if (index === 0) {
+            ctx.fillStyle = "#0f2027";
+            ctx.shadowBlur = 0;
+
+            let eyeX = segment.x * gridSize + gridSize / 2;
+            let eyeY = segment.y * gridSize + gridSize / 2;
+
+            if (dx === 1) eyeX += 5;
+            if (dx === -1) eyeX -= 5;
+            if (dy === 1) eyeY += 5;
+            if (dy === -1) eyeY -= 5;
+
+            ctx.beginPath();
+            ctx.arc(eyeX - 3, eyeY - 3, 3, 0, Math.PI * 2);
+            ctx.arc(eyeX + 3, eyeY - 3, 3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        });
+      }
+
+      function drawFood() {
+        ctx.fillStyle = "#00d4ff";
+        ctx.shadowColor = "#00d4ff";
+        ctx.shadowBlur = 10;
+        ctx.fillRect(
+          food.x * gridSize,
+          food.y * gridSize,
+          gridSize - 2,
+          gridSize - 2
+        );
+      }
+
+      function drawParticles() {
+        particles.forEach((p, i) => {
+          ctx.fillStyle = `rgba(0,255,170,${p.alpha})`;
+          ctx.fillRect(p.x, p.y, 4, 4);
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.02;
+          if (p.alpha <= 0) particles.splice(i, 1);
+        });
+      }
+
+      // =============================
+      // GAME LOOP
+      // =============================
+      function update() {
+        if (!gameRunning) return;
+
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+        if (
+          head.x < 0 ||
+          head.x >= tileCountX ||
+          head.y < 0 ||
+          head.y >= tileCountY
+        ) {
+          endGame();
+          return;
+        }
+
+        for (let segment of snake) {
+          if (segment.x === head.x && segment.y === head.y) {
+            endGame();
+            return;
+          }
+        }
+
+        snake.unshift(head);
+
+        if (head.x === food.x && head.y === food.y) {
+          score++;
+          scoreElement.textContent = score;
+          if (score > highScore) {
+            highScore = score;
+            localStorage.setItem("snakeHighScore", highScore);
+            highScoreElement.textContent = highScore;
+          }
+          createParticles(head.x * gridSize, head.y * gridSize);
+          generateFood();
+        } else {
+          snake.pop();
+        }
+
+        draw();
+      }
+
+      function createParticles(x, y) {
+        for (let i = 0; i < 15; i++) {
+          particles.push({
+            x,
+            y,
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4,
+            alpha: 1,
+          });
+        }
+      }
+
+      // =============================
+      // GAME CONTROL
+      // =============================
+      function startGame() {
+        if (!gameRunning) {
+          gameRunning = true;
+          gameLoop = setInterval(update, 120);
+        }
+      }
+
+      function pauseGame() {
+        gameRunning = false;
+        clearInterval(gameLoop);
+      }
+
+      function resetGame() {
+        pauseGame();
+        initSnakeGame();
+      }
+
+      function endGame() {
+        pauseGame();
+        alert("Game Over !");
+      }
+
+      // =============================
+      // EVENT HANDLERS
+      // =============================
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowUp" && dy !== 1) {
+          dx = 0;
+          dy = -1;
+        }
+        if (e.key === "ArrowDown" && dy !== -1) {
+          dx = 0;
+          dy = 1;
+        }
+        if (e.key === "ArrowLeft" && dx !== 1) {
+          dx = -1;
+          dy = 0;
+        }
+        if (e.key === "ArrowRight" && dx !== -1) {
+          dx = 1;
+          dy = 0;
+        }
+      });
+
+      // Buttons
+      startBtn.onclick = startGame;
+      pauseBtn.onclick = pauseGame;
+      resetBtn.onclick = resetGame;
+      closeBtn.onclick = () => {
+        pauseGame();
+        snakeModal.classList.remove("active");
+      };
+
+      // =============================
+      // KONAMI CODE
+      // =============================
+      const konami = [
+        "ArrowUp",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowLeft",
+        "ArrowRight",
+        "b",
+        "a",
+      ];
+      let konamiIndex = 0;
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === konami[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konami.length) {
+            hint.classList.remove("show");
+            snakeModal.classList.add("active");
+            initSnakeGame();
+            konamiIndex = 0;
+          }
+        } else {
+          konamiIndex = 0;
+        }
+      });
+
+      // Show hint after 15 sec
+      setTimeout(() => {
+        hint.classList.add("show");
+      }, 15000);
+    </script>
+  </body>
+</html>
